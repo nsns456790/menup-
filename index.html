@@ -808,9 +808,20 @@ var clamp=function(v,a,b){return v<a?a:v>b?b:v};
 
 var POSTER="https://d2ol7oe51mr4n9.cloudfront.net/user_3I416X9ACsmsKVtSV9xVNXT6mWn/89df6dfc-17ef-4132-9c90-2cf38cd45b70.jpg";
 var SETTLE="https://d2ol7oe51mr4n9.cloudfront.net/user_3I416X9ACsmsKVtSV9xVNXT6mWn/223ef4bb-7cf1-4a66-8c83-fa46f9a7a114.jpg";
-var VIDEO_D="https://d2ol7oe51mr4n9.cloudfront.net/user_3I416X9ACsmsKVtSV9xVNXT6mWn/b72919a6-b1b5-4345-a712-e73297e35329.mp4";
-var VIDEO_M="https://d2ol7oe51mr4n9.cloudfront.net/user_3I416X9ACsmsKVtSV9xVNXT6mWn/2b8b1730-1e53-4101-ac39-2ec1d47e725f.mp4";
-var VIDEO = window.innerWidth < 900 ? VIDEO_M : VIDEO_D;
+var plate0=$("#plate"), vid0=$("#vid");
+var narrow = window.innerWidth < 900;
+// Phones crop a 16:9 frame so hard that most of its pixels are thrown away,
+// so they get a portrait cut of the same shot instead, keeping every line.
+var VIDEO  = narrow ? "https://d2ol7oe51mr4n9.cloudfront.net/user_3I416X9ACsmsKVtSV9xVNXT6mWn/68728c4f-0a97-4799-963d-b0e3f721c4da.mp4"
+                    : "https://d2ol7oe51mr4n9.cloudfront.net/user_3I416X9ACsmsKVtSV9xVNXT6mWn/b72919a6-b1b5-4345-a712-e73297e35329.mp4";
+var POSTER_U = narrow ? "https://d2ol7oe51mr4n9.cloudfront.net/user_3I416X9ACsmsKVtSV9xVNXT6mWn/25c012b7-577d-47c5-ae63-9938c514085e.jpg" : POSTER;
+var SETTLE_U = narrow ? "https://d2ol7oe51mr4n9.cloudfront.net/user_3I416X9ACsmsKVtSV9xVNXT6mWn/efb6a1c5-d46c-4c29-9c25-ba272f466556.jpg" : SETTLE;
+if(narrow){
+  plate0.style.backgroundImage="url('"+POSTER_U+"')";
+  plate0.style.backgroundPosition="center";
+  vid0.setAttribute("poster",POSTER_U);
+  vid0.style.objectPosition="center";
+}
 
 var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 $("#yr").textContent=new Date().getFullYear();
@@ -859,7 +870,8 @@ var SETTLE_FROM=0.88;
 
 function goStatic(msg){
   hero.classList.add("static-hero");
-  plate.style.backgroundImage="url('"+SETTLE+"')";
+  plate.style.backgroundImage="url('"+SETTLE_U+"')";
+  plate.style.backgroundPosition=narrow?"center":"32% 46%";
   bands.forEach(function(b){ b.style.display="none"; });
   settle.classList.add("on");
   if(hint) hint.classList.add("hidden");
