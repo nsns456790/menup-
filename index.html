@@ -366,6 +366,29 @@ footer{border-block-start:1px solid var(--line);padding-block:clamp(46px,5vw,74p
   display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--fg-3)}
 .fine span{direction:ltr;font-family:var(--f-lat)}
 
+@media (max-width:900px){
+  .hero{height:340svh}
+  .stage video{object-position:32% 46%}
+  .stage .plate{background-position:32% 46%}
+  .vig{background:
+    linear-gradient(to top, rgba(7,8,10,.95) 0%, rgba(7,8,10,.74) 24%, rgba(7,8,10,.05) 56%, rgba(7,8,10,.34) 100%),
+    linear-gradient(to left, rgba(7,8,10,.34) 0%, transparent 40%)}
+  .band{align-items:flex-end;padding-block-end:clamp(70px,15svh,132px)}
+  .band .inner{max-width:none}
+  .band .k{margin-block-end:12px}
+  .band .t{font-size:clamp(34px,9.6vw,54px)}
+  .band .s{margin-block-start:12px;font-size:clamp(14.5px,4.2vw,18px)}
+  .band .rule{margin-block-start:20px}
+  .settle{align-items:flex-end;padding-block-end:clamp(60px,13svh,116px)}
+  .settle .inner{max-width:none;width:100%}
+  .settle .mark{margin-block-end:16px}
+  .settle h1{font-size:clamp(19px,5.2vw,26px)}
+  .settle .row{margin-block-start:26px;width:100%}
+  .settle .row .btn{flex:1 1 46%;justify-content:center;padding-inline:18px}
+  .hint{inset-inline-end:auto;inset-inline-start:var(--pad)}
+  .ring{inset-inline-start:auto;inset-inline-end:var(--pad)}
+}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
     transition-duration:.001ms!important}
@@ -785,7 +808,9 @@ var clamp=function(v,a,b){return v<a?a:v>b?b:v};
 
 var POSTER="https://d2ol7oe51mr4n9.cloudfront.net/user_3I416X9ACsmsKVtSV9xVNXT6mWn/89df6dfc-17ef-4132-9c90-2cf38cd45b70.jpg";
 var SETTLE="https://d2ol7oe51mr4n9.cloudfront.net/user_3I416X9ACsmsKVtSV9xVNXT6mWn/223ef4bb-7cf1-4a66-8c83-fa46f9a7a114.jpg";
-var VIDEO ="https://d2ol7oe51mr4n9.cloudfront.net/user_3I416X9ACsmsKVtSV9xVNXT6mWn/b72919a6-b1b5-4345-a712-e73297e35329.mp4";
+var VIDEO_D="https://d2ol7oe51mr4n9.cloudfront.net/user_3I416X9ACsmsKVtSV9xVNXT6mWn/b72919a6-b1b5-4345-a712-e73297e35329.mp4";
+var VIDEO_M="https://d2ol7oe51mr4n9.cloudfront.net/user_3I416X9ACsmsKVtSV9xVNXT6mWn/2b8b1730-1e53-4101-ac39-2ec1d47e725f.mp4";
+var VIDEO = window.innerWidth < 900 ? VIDEO_M : VIDEO_D;
 
 var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 $("#yr").textContent=new Date().getFullYear();
@@ -842,8 +867,9 @@ function goStatic(msg){
   if(vid && vid.parentNode) vid.parentNode.removeChild(vid);
 }
 
-var wantsScrub = !reduce && window.innerWidth>=900 && typeof fetch==="function" &&
-                 !(window.matchMedia && window.matchMedia("(pointer: coarse)").matches);
+var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+var thin = !!(conn && (conn.saveData || /^slow-2g|^2g$/.test(conn.effectiveType || "")));
+var wantsScrub = !reduce && !thin && typeof fetch==="function";
 
 if(!wantsScrub){
   goStatic();
@@ -909,6 +935,17 @@ function startScrub(){
   }
 
   /* stream the video behind an honest ring */
+  // Safari on iOS refuses to seek a media element that has never played,
+  // so start it and stop it again straight away. Harmless elsewhere.
+  function nudge(){
+    try{
+      var pr=vid.play();
+      if(pr&&pr.then){ pr.then(function(){ try{vid.pause();}catch(e){} },function(){}); }
+      else { vid.pause(); }
+    }catch(e){}
+  }
+  window.addEventListener("touchstart",function(){ if(ready) nudge(); },{once:true,passive:true});
+
   ringwrap.classList.remove("hidden");
   function setRing(f){
     var c=2*Math.PI*10;
@@ -934,7 +971,7 @@ function startScrub(){
     vid.addEventListener("loadeddata",function(){
       dur=vid.duration||5;
       ready=true;
-      try{ vid.pause(); }catch(e){}
+      nudge();
       stage.classList.add("playing");
       ringwrap.classList.add("hidden");
       onScroll();
