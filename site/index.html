@@ -1,0 +1,1011 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>menup · قهوة مختصة</title>
+<meta name="description" content="menup · قهوة مختصة. في ٦٠ محضّرة على مهل، قائمة مشروبات وحلويات، وكل ما تحتاج تعرفه عن قهوتك.">
+<meta name="theme-color" content="#07080a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="menup · قهوة مختصة">
+<meta property="og:description" content="في ٦٠ محضّرة على مهل. قائمة كاملة من المشروبات والحلويات.">
+<meta property="og:image" content="https://d2ol7oe51mr4n9.cloudfront.net/user_3I416X9ACsmsKVtSV9xVNXT6mWn/223ef4bb-7cf1-4a66-8c83-fa46f9a7a114.jpg">
+<meta property="og:locale" content="ar_SA">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://d2ol7oe51mr4n9.cloudfront.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@200;300;400;500;600;700&family=Reem+Kufi:wght@400;500;600;700&family=Sora:wght@200;300;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Ccircle cx='22' cy='27' r='13' fill='none' stroke='%23C98B45' stroke-width='3'/%3E%3Cpath d='M22 3c0 0-6 9-6 12a6 6 0 0 0 12 0c0-3-6-12-6-12z' fill='%23C98B45'/%3E%3C/svg%3E">
+<style>
+:root{
+  --ink:#07080a; --ink-2:#0b0d10; --surface:#101317; --surface-2:#161a1f;
+  --line:rgba(233,228,219,.10); --line-2:rgba(233,228,219,.18);
+  --fg:#EDE8DF; --fg-2:#A7A198; --fg-3:#6E6960;
+  --amber:#C98B45; --amber-2:#E6A65C; --frost:#A9C6D6;
+  --pad:clamp(20px,5vw,72px);
+  --maxw:1240px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --f-disp:"Reem Kufi","IBM Plex Sans Arabic",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-lat:"Sora","IBM Plex Sans Arabic",system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;background:var(--ink);color:var(--fg);
+  font-family:var(--f-body);font-weight:300;font-size:clamp(15px,1.05vw,17px);
+  line-height:1.75;letter-spacing:0;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img,video,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+h1,h2,h3,h4{font-family:var(--f-disp);font-weight:500;line-height:1.2;margin:0;letter-spacing:0}
+p{margin:0}
+::selection{background:var(--amber);color:#0a0a0a}
+:focus-visible{outline:2px solid var(--amber-2);outline-offset:3px;border-radius:2px}
+
+/* ---------- fixed background environment layer ---------- */
+.env{position:fixed;inset:0;z-index:0;pointer-events:none}
+.env::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(120% 80% at 78% 8%, rgba(201,139,69,.10), transparent 55%),
+    radial-gradient(90% 70% at 12% 92%, rgba(169,198,214,.055), transparent 60%),
+    linear-gradient(180deg,#07080a 0%,#090b0e 40%,#07080a 100%);
+}
+.env::after{
+  content:"";position:absolute;inset:-40%;opacity:.5;
+  background-image:radial-gradient(rgba(237,232,223,.16) .6px,transparent .6px);
+  background-size:3px 3px;
+  mix-blend-mode:overlay;
+}
+#motes{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5}
+.grain{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.035;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- nav ---------- */
+.nav{
+  position:fixed;inset-block-start:0;inset-inline:0;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:14px var(--pad);
+  transition:background .5s var(--ease),backdrop-filter .5s var(--ease),border-color .5s var(--ease),padding .5s var(--ease);
+  border-block-end:1px solid transparent;
+}
+.nav.solid{background:rgba(7,8,10,.78);backdrop-filter:blur(14px) saturate(1.2);border-block-end-color:var(--line);padding-block:10px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--fg);direction:ltr}
+.brand svg{width:26px;height:26px;color:var(--amber);flex:none}
+.brand b{font-family:var(--f-lat);font-weight:600;font-size:19px;letter-spacing:.02em;direction:ltr}
+.navlinks{display:flex;align-items:center;gap:clamp(14px,2vw,30px)}
+.navlinks a{font-size:14px;color:var(--fg-2);transition:color .35s var(--ease);position:relative;padding-block:6px}
+.navlinks a::after{content:"";position:absolute;inset-block-end:0;inset-inline:50% 50%;height:1px;background:var(--amber);transition:inset .4s var(--ease)}
+.navlinks a:hover{color:var(--fg)}
+.navlinks a:hover::after{inset-inline:0}
+.nav .cta-sm{
+  font-size:13.5px;padding:9px 18px;border:1px solid var(--line-2);border-radius:100px;
+  color:var(--fg);transition:.4s var(--ease);white-space:nowrap;
+}
+.nav .cta-sm:hover{background:var(--amber);border-color:var(--amber);color:#0a0a0a}
+@media (max-width:860px){.navlinks{display:none}}
+
+/* ---------- hero scrub ---------- */
+.hero{position:relative;z-index:5;height:460svh}
+.hero.static-hero{height:100svh}
+.stage{position:sticky;top:0;height:100svh;overflow:hidden}
+.stage video,.stage .plate{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+}
+.stage .plate{background:#07080a center/cover no-repeat}
+.stage video{opacity:0;transition:opacity .9s var(--ease)}
+.stage.playing video{opacity:1}
+.stage.playing .plate{opacity:0;transition:opacity .9s var(--ease)}
+.vig{position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(to left, rgba(7,8,10,.90) 0%, rgba(7,8,10,.62) 34%, rgba(7,8,10,.10) 62%, rgba(7,8,10,.34) 100%),
+    linear-gradient(to top, rgba(7,8,10,.92) 0%, transparent 42%),
+    linear-gradient(to bottom, rgba(7,8,10,.72) 0%, transparent 34%);
+}
+
+/* caption bands */
+.bands{position:absolute;inset:0;display:grid;place-items:center;padding:0 var(--pad)}
+.band{
+  position:absolute;inset-block:0;inset-inline-start:0;inset-inline-end:0;
+  display:flex;align-items:center;justify-content:flex-start;
+  padding:0 var(--pad);
+  opacity:0;visibility:hidden;
+  transition:opacity .55s var(--ease);
+}
+.band.on{opacity:1;visibility:visible}
+.band .inner{max-width:min(46ch,44vw);text-align:start}
+.band .k{
+  font-family:var(--f-lat);font-size:11.5px;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--amber);display:block;margin-block-end:18px;direction:ltr;
+  opacity:0;transform:translateY(10px);transition:.7s .05s var(--ease-out);
+}
+.band .t{
+  font-family:var(--f-disp);font-weight:500;
+  font-size:clamp(38px,6.4vw,88px);line-height:1.08;
+  text-shadow:0 2px 40px rgba(7,8,10,.9),0 1px 3px rgba(7,8,10,.9);
+  opacity:0;transform:translateY(22px);transition:.85s .1s var(--ease-out);
+}
+.band .s{
+  margin-block-start:18px;font-size:clamp(15px,1.5vw,20px);font-weight:300;color:#DCD5CA;
+  text-shadow:0 1px 20px rgba(7,8,10,.95);
+  opacity:0;transform:translateY(16px);transition:.85s .22s var(--ease-out);
+}
+.band.on .k,.band.on .t,.band.on .s{opacity:1;transform:none}
+.band .rule{height:1px;background:linear-gradient(to left,var(--amber),transparent);margin-block-start:26px;
+  transform:scaleX(0);transform-origin:right;transition:transform 1s .3s var(--ease-out)}
+.band.on .rule{transform:scaleX(1)}
+@media (max-width:900px){.band .inner{max-width:none}}
+
+/* settle */
+.settle{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-start;
+  padding:0 var(--pad);opacity:0;visibility:hidden;transition:opacity .7s var(--ease);
+}
+.settle.on{opacity:1;visibility:visible}
+.settle .inner{max-width:min(50ch,46vw)}
+.settle .mark{display:flex;align-items:center;gap:14px;margin-block-end:22px;direction:ltr;justify-content:flex-end;
+  opacity:0;transform:translateY(16px);transition:.9s var(--ease-out)}
+.settle .mark svg{width:44px;height:44px;color:var(--amber)}
+.settle .mark span{font-family:var(--f-lat);font-weight:600;font-size:clamp(34px,4.4vw,56px);letter-spacing:.01em;direction:ltr;line-height:1}
+.settle h1{font-size:clamp(22px,2.5vw,34px);font-weight:400;line-height:1.35;color:#E4DED4;
+  opacity:0;transform:translateY(18px);transition:.9s .12s var(--ease-out)}
+.settle .row{display:flex;gap:14px;flex-wrap:wrap;margin-block-start:32px;
+  opacity:0;transform:translateY(18px);transition:.9s .26s var(--ease-out)}
+.settle.on .mark,.settle.on h1,.settle.on .row{opacity:1;transform:none}
+@media (max-width:900px){.settle .inner{max-width:none}}
+
+/* buttons */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:15px 30px;border-radius:100px;font-size:15px;font-weight:500;
+  background:var(--amber);color:#0a0a0a;border:1px solid var(--amber);
+  transition:.45s var(--ease);position:relative;overflow:hidden;
+}
+.btn::after{content:"";position:absolute;inset:0;background:var(--amber-2);opacity:0;transition:opacity .45s var(--ease)}
+.btn>*{position:relative;z-index:1}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 40px -14px rgba(201,139,69,.7)}
+.btn:hover::after{opacity:1}
+.btn.ghost{background:transparent;color:var(--fg);border-color:var(--line-2)}
+.btn.ghost::after{background:rgba(237,232,223,.07)}
+.btn.ghost:hover{box-shadow:none;border-color:var(--fg-3)}
+.btn .ar{width:16px;height:16px;flex:none;transition:transform .45s var(--ease)}
+.btn:hover .ar{transform:translateX(-4px)}
+
+/* scroll hint */
+.hint{position:absolute;inset-block-end:26px;inset-inline-end:var(--pad);display:flex;align-items:center;gap:10px;
+  font-size:11px;letter-spacing:.28em;color:var(--fg-3);font-family:var(--f-lat);direction:ltr;
+  transition:opacity .5s var(--ease)}
+.hint i{display:block;width:1px;height:34px;background:linear-gradient(to bottom,var(--amber),transparent);animation:drip 2.4s var(--ease) infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* loader ring */
+.ring{position:absolute;inset-block-end:26px;inset-inline-start:var(--pad);display:flex;align-items:center;gap:12px;
+  font-size:11px;letter-spacing:.2em;color:var(--fg-3);font-family:var(--f-lat);direction:ltr;transition:opacity .5s}
+.ring svg{width:22px;height:22px;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:2}
+.ring .bg{stroke:rgba(237,232,223,.14)}
+.ring .fg{stroke:var(--amber);stroke-linecap:round;transition:stroke-dashoffset .25s linear}
+.hidden{opacity:0!important;pointer-events:none}
+</style>
+<style>
+/* ---------- page below ---------- */
+.page{position:relative;z-index:6;background:var(--ink);
+  box-shadow:0 -60px 90px -30px rgba(7,8,10,1)}
+section{position:relative;padding-block:clamp(84px,11vw,164px);scroll-margin-block-start:78px}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad)}
+
+/* section heading system */
+.head{position:relative;margin-block-end:clamp(40px,5vw,72px)}
+.head .ripple{position:absolute;inset-block-start:-46px;inset-inline-start:-30px;width:210px;height:210px;
+  color:var(--amber);opacity:.14;pointer-events:none}
+.kick{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-lat);font-size:11px;
+  letter-spacing:.32em;text-transform:uppercase;color:var(--amber);margin-block-end:16px;direction:ltr}
+.kick::before{content:"";width:26px;height:1px;background:var(--amber)}
+.head h2{font-size:clamp(30px,4.4vw,60px);font-weight:500;position:relative}
+.head p{margin-block-start:18px;max-width:56ch;color:var(--fg-2);font-size:clamp(15px,1.2vw,18px)}
+.hr{height:1px;background:var(--line);margin-block-start:34px;transform:scaleX(0);transform-origin:right;
+  transition:transform 1.4s var(--ease-out)}
+.in .hr{transform:scaleX(1)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
+.rv.in{opacity:1;transform:none}
+.rv[data-d="1"]{transition-delay:.08s}.rv[data-d="2"]{transition-delay:.16s}
+.rv[data-d="3"]{transition-delay:.24s}.rv[data-d="4"]{transition-delay:.32s}
+.rv[data-d="5"]{transition-delay:.40s}.rv[data-d="6"]{transition-delay:.48s}
+.rv[data-d="7"]{transition-delay:.56s}.rv[data-d="8"]{transition-delay:.64s}
+.rv[data-d="9"]{transition-delay:.72s}.rv[data-d="10"]{transition-delay:.80s}
+
+/* spine (scroll-drawn pour line) */
+.spine{position:absolute;inset-block:0;inset-inline-start:50%;width:1px;pointer-events:none;z-index:1;
+  background:linear-gradient(to bottom,transparent,var(--line),var(--line),transparent)}
+.spine i{position:absolute;inset-inline-start:-2.5px;width:6px;height:6px;border-radius:50%;
+  background:var(--amber);box-shadow:0 0 18px 4px rgba(201,139,69,.45);top:0}
+@media (max-width:900px){.spine{display:none}}
+
+/* ---------- hero product (V60) ---------- */
+.hero-v60{overflow:hidden}
+.v60grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,80px);align-items:center}
+@media (max-width:940px){.v60grid{grid-template-columns:1fr}}
+.v60art{position:relative;aspect-ratio:4/3;border-radius:4px;overflow:hidden;border:1px solid var(--line)}
+.v60art img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 1.6s var(--ease-out)}
+.in .v60art img{transform:scale(1)}
+.v60art::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(7,8,10,.7),transparent 55%)}
+.v60art .tag{position:absolute;inset-block-end:18px;inset-inline-start:18px;z-index:2;
+  font-family:var(--f-lat);font-size:11px;letter-spacing:.26em;color:var(--fg-2);direction:ltr}
+.price{font-family:var(--f-lat);font-weight:300;color:var(--amber);direction:ltr;display:inline-flex;align-items:baseline;gap:6px}
+.price b{font-weight:600;font-size:clamp(40px,5vw,68px);line-height:1}
+.price span{font-family:var(--f-body);font-size:15px;color:var(--fg-2)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);margin-block-start:38px}
+.stats div{background:var(--ink);padding:20px 16px;text-align:center}
+.stats b{display:block;font-family:var(--f-lat);font-weight:300;font-size:clamp(20px,2.4vw,30px);color:var(--fg);direction:ltr}
+.stats small{display:block;margin-block-start:6px;font-size:12.5px;color:var(--fg-3)}
+
+/* ---------- steps ---------- */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+@media (max-width:900px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+.step{background:var(--ink);padding:clamp(24px,2.6vw,36px);position:relative;overflow:hidden;transition:background .5s var(--ease)}
+.step:hover{background:var(--surface)}
+.step .n{font-family:var(--f-lat);font-size:12px;letter-spacing:.24em;color:var(--amber);direction:ltr}
+.step h3{margin-block:16px 10px;font-size:clamp(19px,1.8vw,24px)}
+.step p{color:var(--fg-2);font-size:14.5px}
+.step::after{content:"";position:absolute;inset-block-start:0;inset-inline-end:0;width:0;height:1px;background:var(--amber);transition:width .6s var(--ease)}
+.step:hover::after{width:100%}
+
+/* ---------- calculator ---------- */
+.calc{border:1px solid var(--line);background:linear-gradient(180deg,var(--surface),var(--ink));
+  padding:clamp(26px,3.4vw,48px);margin-block-start:clamp(34px,4vw,60px);
+  display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(26px,4vw,58px);align-items:center}
+@media (max-width:900px){.calc{grid-template-columns:1fr}}
+.calc h3{font-size:clamp(22px,2.4vw,32px)}
+.calc .lead{color:var(--fg-2);margin-block-start:12px;font-size:15px}
+.slabel{display:flex;justify-content:space-between;align-items:baseline;margin-block:30px 12px;font-size:14px;color:var(--fg-2)}
+.slabel b{font-family:var(--f-lat);font-size:26px;color:var(--fg);font-weight:300;direction:ltr}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:2px;background:var(--line-2);
+  border-radius:2px;outline:none;direction:rtl}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;
+  background:var(--amber);cursor:pointer;border:3px solid var(--ink);box-shadow:0 0 0 1px var(--amber),0 0 20px rgba(201,139,69,.55);transition:transform .25s var(--ease)}
+input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
+input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--amber);
+  cursor:pointer;border:3px solid var(--ink);box-shadow:0 0 0 1px var(--amber)}
+.out{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.out div{background:var(--ink-2);padding:24px 12px;text-align:center}
+.out b{display:block;font-family:var(--f-lat);font-weight:200;font-size:clamp(26px,3.2vw,42px);
+  color:var(--amber-2);line-height:1;direction:ltr;transition:opacity .18s var(--ease)}
+.out small{display:block;margin-block-start:10px;font-size:12.5px;color:var(--fg-3)}
+.dripper{width:100%;max-width:190px;margin-inline:auto;color:var(--fg-3)}
+.dripper .drop{color:var(--amber)}
+
+/* ---------- menu ---------- */
+.tabs{display:flex;gap:8px;margin-block-end:36px;flex-wrap:wrap}
+.tab{padding:11px 24px;border:1px solid var(--line);border-radius:100px;font-size:14px;color:var(--fg-2);
+  transition:.4s var(--ease)}
+.tab[aria-selected="true"]{background:var(--fg);color:#0a0a0a;border-color:var(--fg)}
+.tab:hover:not([aria-selected="true"]){border-color:var(--fg-3);color:var(--fg)}
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(30px,5vw,74px)}
+@media (max-width:820px){.menu{grid-template-columns:1fr}}
+.item{display:flex;align-items:flex-end;gap:14px;padding-block:19px;border-block-end:1px solid var(--line);
+  transition:padding .45s var(--ease)}
+.item:hover{padding-inline-start:8px}
+.item .nm{flex:none}
+.item .nm h4{font-size:clamp(17px,1.5vw,20px);font-weight:500;transition:color .4s var(--ease)}
+.item:hover .nm h4{color:var(--amber-2)}
+.item .nm small{display:block;color:var(--fg-3);font-size:13px;margin-block-start:5px;line-height:1.5}
+.item .dots{flex:1;border-block-end:1px dotted var(--line-2);transform:translateY(-7px);min-width:16px}
+.item .pr{flex:none;font-family:var(--f-lat);font-weight:300;font-size:17px;color:var(--fg-2);direction:ltr;white-space:nowrap}
+.item.star{border-block-end-color:var(--line-2)}
+.item.star .nm h4{color:var(--amber)}
+.item.star .pr{color:var(--amber)}
+.badge{display:inline-block;margin-inline-start:9px;font-family:var(--f-lat);font-size:9.5px;letter-spacing:.2em;
+  padding:3px 8px;border:1px solid var(--amber);color:var(--amber);border-radius:100px;vertical-align:middle;direction:ltr}
+.pane[hidden]{display:none}
+
+/* ---------- knowledge cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.card{background:var(--ink);padding:clamp(26px,2.8vw,38px);transition:background .5s var(--ease)}
+.card:hover{background:var(--surface)}
+.card .ic{width:30px;height:30px;color:var(--amber);margin-block-end:20px}
+.card h3{font-size:clamp(19px,1.7vw,23px);margin-block-end:12px}
+.card p{color:var(--fg-2);font-size:14.5px}
+.card ul{margin:14px 0 0;padding:0;list-style:none}
+.card li{display:flex;gap:10px;padding-block:7px;border-block-start:1px solid var(--line);font-size:14px;color:var(--fg-2)}
+.card li:first-child{border-block-start:0}
+.card li b{color:var(--fg);font-weight:500;flex:none;min-width:5.5em}
+
+/* ---------- faq ---------- */
+.faq{border-block-start:1px solid var(--line)}
+.q{width:100%;text-align:start;display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding-block:26px;border-block-end:1px solid var(--line);font-size:clamp(16px,1.5vw,20px);
+  font-family:var(--f-disp);font-weight:500;transition:color .4s var(--ease)}
+.q:hover{color:var(--amber-2)}
+.q i{flex:none;width:20px;height:20px;position:relative;transition:transform .5s var(--ease)}
+.q i::before,.q i::after{content:"";position:absolute;inset-block-start:9px;inset-inline-start:0;width:20px;height:1.5px;background:currentColor;transition:.5s var(--ease)}
+.q i::after{transform:rotate(90deg)}
+.q[aria-expanded="true"] i{transform:rotate(135deg);color:var(--amber)}
+.a{overflow:hidden;height:0;transition:height .5s var(--ease)}
+.a>div{padding-block:6px 30px;color:var(--fg-2);max-width:70ch;font-size:15px;border-block-end:1px solid var(--line)}
+
+/* ---------- visit ---------- */
+.visit{position:relative;overflow:hidden}
+.visitgrid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,80px);align-items:center}
+@media (max-width:940px){.visitgrid{grid-template-columns:1fr}}
+.info{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.info div{background:var(--ink);padding:22px clamp(20px,2.4vw,30px);display:flex;gap:18px;align-items:flex-start}
+.info svg{width:19px;height:19px;color:var(--amber);flex:none;margin-block-start:4px}
+.info b{display:block;font-weight:500;margin-block-end:5px}
+.info p{color:var(--fg-2);font-size:14.5px}
+.info .hrs{font-family:var(--f-lat);direction:ltr;font-size:14px;color:var(--fg-2)}
+.visitart{aspect-ratio:1/1;border:1px solid var(--line);overflow:hidden;position:relative}
+.visitart img{width:100%;height:100%;object-fit:cover;opacity:.82}
+.visitart::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(7,8,10,.85),transparent 60%)}
+.visitart .mk{position:absolute;inset-block-end:0;inset-inline:0;padding:clamp(22px,3vw,38px);z-index:2}
+.visitart .mk .price{margin-block-end:14px}
+
+/* ---------- footer ---------- */
+footer{border-block-start:1px solid var(--line);padding-block:clamp(46px,5vw,74px);position:relative;z-index:6;background:var(--ink)}
+.fgrid{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start}
+.fgrid>.brand{margin-inline-end:auto}
+.fgrid .brand svg{width:30px;height:30px}
+.fgrid .brand b{font-size:22px}
+.fnav{display:flex;gap:26px;flex-wrap:wrap}
+.fnav a{font-size:14px;color:var(--fg-2);transition:color .35s var(--ease)}
+.fnav a:hover{color:var(--amber-2)}
+.fine{margin-block-start:44px;padding-block-start:24px;border-block-start:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--fg-3)}
+.fine span{direction:ltr;font-family:var(--f-lat)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important}
+  .rv{opacity:1!important;transform:none!important}
+  #motes{display:none}
+}
+</style>
+</head>
+<body>
+<div class="env"></div>
+<canvas id="motes"></canvas>
+<div class="grain"></div>
+
+<svg style="position:absolute;width:0;height:0" aria-hidden="true">
+  <symbol id="logo" viewBox="0 0 44 44">
+    <circle cx="22" cy="27" r="12.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <path d="M22 3.5c0 0-5.6 8.6-5.6 11.6a5.6 5.6 0 0 0 11.2 0c0-3-5.6-11.6-5.6-11.6z" fill="currentColor"/>
+    <path d="M14.5 29.5Q22 22.5 29.5 29.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".55"/>
+  </symbol>
+  <symbol id="arrow" viewBox="0 0 16 16">
+    <path d="M13 8H3M7 3 2.5 8 7 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="ripple" viewBox="0 0 210 210">
+    <circle cx="105" cy="105" r="34" fill="none" stroke="currentColor" stroke-width="1"/>
+    <circle cx="105" cy="105" r="58" fill="none" stroke="currentColor" stroke-width="1" opacity=".7"/>
+    <circle cx="105" cy="105" r="82" fill="none" stroke="currentColor" stroke-width="1" opacity=".45"/>
+    <circle cx="105" cy="105" r="104" fill="none" stroke="currentColor" stroke-width="1" opacity=".22"/>
+  </symbol>
+  <symbol id="pin" viewBox="0 0 20 20">
+    <path d="M10 18s6-6.2 6-10.4A6 6 0 0 0 4 7.6C4 11.8 10 18 10 18z" fill="none" stroke="currentColor" stroke-width="1.4"/>
+    <circle cx="10" cy="7.6" r="2.2" fill="currentColor"/>
+  </symbol>
+  <symbol id="clock" viewBox="0 0 20 20">
+    <circle cx="10" cy="10" r="7.6" fill="none" stroke="currentColor" stroke-width="1.4"/>
+    <path d="M10 5.6V10l3 2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="cup" viewBox="0 0 20 20">
+    <path d="M3.5 6h11v6a4.5 4.5 0 0 1-4.5 4.5H8A4.5 4.5 0 0 1 3.5 12z" fill="none" stroke="currentColor" stroke-width="1.4"/>
+    <path d="M14.5 8h1.6a2.2 2.2 0 0 1 0 4.4h-1.6" fill="none" stroke="currentColor" stroke-width="1.4"/>
+    <path d="M6.6 3.2v-1.4M10 3.2v-1.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="bean" viewBox="0 0 20 20">
+    <ellipse cx="10" cy="10" rx="7.4" ry="5.6" transform="rotate(-38 10 10)" fill="none" stroke="currentColor" stroke-width="1.4"/>
+    <path d="M5.6 13.4C8 11.6 12 8.4 14.4 6.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="flame" viewBox="0 0 20 20">
+    <path d="M10 2.2s4.8 4 4.8 8a4.8 4.8 0 1 1-9.6 0c0-1.7.9-3.2 1.8-4.3.5 1 1.2 1.7 2 2 0-2.4.6-4.3 1-5.7z" fill="none" stroke="currentColor" stroke-width="1.4"/>
+  </symbol>
+  <symbol id="grind" viewBox="0 0 20 20">
+    <circle cx="10" cy="10" r="7.6" fill="none" stroke="currentColor" stroke-width="1.4"/>
+    <circle cx="10" cy="10" r="2.6" fill="none" stroke="currentColor" stroke-width="1.4"/>
+    <path d="M10 2.4v3M10 14.6v3M2.4 10h3M14.6 10h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<nav class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="menup، الرئيسية">
+    <svg><use href="#logo"/></svg><b>menup</b>
+  </a>
+  <div class="navlinks">
+    <a href="#v60">في ٦٠</a>
+    <a href="#brew">كيف نحضّرها</a>
+    <a href="#menu">القائمة</a>
+    <a href="#learn">اعرف قهوتك</a>
+    <a href="#visit">زورنا</a>
+  </div>
+  <a class="cta-sm" href="#visit">اطلب في ٦٠</a>
+</nav>
+
+<main id="top">
+
+<section class="hero" id="hero">
+  <div class="stage" id="stage">
+    <div class="plate" id="plate" style="background-image:url('https://d2ol7oe51mr4n9.cloudfront.net/user_3I416X9ACsmsKVtSV9xVNXT6mWn/89df6dfc-17ef-4132-9c90-2cf38cd45b70.jpg')"></div>
+    <video id="vid" playsinline muted preload="none" tabindex="-1" aria-hidden="true"
+      poster="https://d2ol7oe51mr4n9.cloudfront.net/user_3I416X9ACsmsKVtSV9xVNXT6mWn/89df6dfc-17ef-4132-9c90-2cf38cd45b70.jpg"></video>
+    <div class="vig"></div>
+
+    <div class="bands" id="bands">
+      <div class="band" data-from="0.02" data-to="0.19">
+        <div class="inner">
+          <span class="k">menup</span>
+          <p class="t">البرد ينزل</p>
+          <p class="s">والقهوة تبدأ.</p>
+          <div class="rule"></div>
+        </div>
+      </div>
+      <div class="band" data-from="0.23" data-to="0.42">
+        <div class="inner">
+          <span class="k">the recipe</span>
+          <p class="t">بن وماء وصبر</p>
+          <p class="s">هذه كل الوصفة. لا شيء غيرها.</p>
+          <div class="rule"></div>
+        </div>
+      </div>
+      <div class="band" data-from="0.46" data-to="0.64">
+        <div class="inner">
+          <span class="k">v60</span>
+          <p class="t">قطرة قطرة</p>
+          <p class="s">الماء ينزل على مهل، ويأخذ من الحبة أحلى ما فيها.</p>
+          <div class="rule"></div>
+        </div>
+      </div>
+      <div class="band" data-from="0.68" data-to="0.84">
+        <div class="inner">
+          <span class="k">clean cup</span>
+          <p class="t">طعم صافٍ</p>
+          <p class="s">بلا حليب يغطّيه، وبلا سكر يخفيه.</p>
+          <div class="rule"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="settle" id="settle">
+      <div class="inner">
+        <div class="mark"><svg><use href="#logo"/></svg><span>menup</span></div>
+        <h1>قهوة مختصة تُحضَّر أمامك. وفي ٦٠ هي بطلة القائمة.</h1>
+        <div class="row">
+          <a class="btn" href="#v60"><span>اطلب في ٦٠</span><svg class="ar"><use href="#arrow"/></svg></a>
+          <a class="btn ghost" href="#menu"><span>شوف القائمة كاملة</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hint" id="hint"><span>SCROLL</span><i></i></div>
+    <div class="ring hidden" id="ringwrap" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><circle class="bg" cx="12" cy="12" r="10"/><circle class="fg" id="ringfg" cx="12" cy="12" r="10" stroke-dasharray="62.8" stroke-dashoffset="62.8"/></svg>
+      <span id="ringtxt">0%</span>
+    </div>
+  </div>
+</section>
+
+<div class="page">
+
+<section class="hero-v60" id="v60">
+  <div class="spine" data-spine><i></i></div>
+  <div class="wrap">
+    <div class="head rv"><svg class="ripple"><use href="#ripple"/></svg>
+      <span class="kick">the one to order</span>
+      <h2>في ٦٠</h2>
+      <p>ماء عند ٩٣ درجة ينزل على بن مطحون قبل دقيقة، ويمر عبر فلتر ورقي. أربع دقائق ونص، ولا شيء يقف بينك وبين طعم الحبة.</p>
+      <div class="hr"></div>
+    </div>
+    <div class="v60grid">
+      <div class="rv" data-d="1">
+        <div class="v60art">
+          <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3I416X9ACsmsKVtSV9xVNXT6mWn/223ef4bb-7cf1-4a66-8c83-fa46f9a7a114.jpg" alt="كوب في ٦٠ أسود على طاولة حجرية داكنة" width="1600" height="892" loading="lazy" decoding="async">
+          <span class="tag">V60 · POUR OVER</span>
+        </div>
+      </div>
+      <div class="rv" data-d="2">
+        <p style="color:var(--fg-2);font-size:clamp(16px,1.4vw,19px);max-width:48ch">
+          كل كوب يُحضَّر لحاله. نطحن عند الطلب، نوزن البن والماء، ونسكب بيدنا. ما فيه آلة تسوي الشغل بدالنا.
+        </p>
+        <div style="margin-block-start:34px" class="price"><b>34</b><span>ر.س</span></div>
+        <div class="stats">
+          <div><b>4:30</b><small>دقيقة تحضير</small></div>
+          <div><b>1:15</b><small>بن إلى ماء</small></div>
+          <div><b>93°</b><small>حرارة الماء</small></div>
+        </div>
+        <div style="margin-block-start:34px">
+          <a class="btn" href="#visit"><span>اطلبها عند الكاونتر</span><svg class="ar"><use href="#arrow"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="brew">
+  <div class="wrap">
+    <div class="head rv"><svg class="ripple"><use href="#ripple"/></svg>
+      <span class="kick">how we make it</span>
+      <h2>كيف نحضّرها</h2>
+      <p>أربع خطوات، نمشي عليها في كل كوب، بدون استعجال.</p>
+      <div class="hr"></div>
+    </div>
+    <div class="steps">
+      <div class="step rv" data-d="1"><span class="n">01</span><h3>نطحن</h3><p>نطحن البن لحظة الطلب، طحن متوسط. البن المطحون من زمان يفقد ريحته.</p></div>
+      <div class="step rv" data-d="2"><span class="n">02</span><h3>نبلّل</h3><p>ماء قليل أول، والبن ينتفخ ويتنفس ثلاثين ثانية. هنا تطلع الرائحة.</p></div>
+      <div class="step rv" data-d="3"><span class="n">03</span><h3>نسكب</h3><p>دوائر بطيئة من النص للطرف، على ثلاث دفعات. لا نستعجل الماء.</p></div>
+      <div class="step rv" data-d="4"><span class="n">04</span><h3>نقدّم</h3><p>كوب صافي، بدون سكر إلا إذا طلبته. جربه أول رشفة بدون شيء.</p></div>
+    </div>
+
+    <div class="calc rv" data-d="2">
+      <div>
+        <h3>احسب في ٦٠ في بيتك</h3>
+        <p class="lead">اختر كم كوب تبي، ونعطيك الوزن والماء والوقت. نفس النسبة اللي نستخدمها هنا.</p>
+        <div class="slabel"><span>عدد الأكواب</span><b id="cups">1</b></div>
+        <input type="range" id="cupRange" min="1" max="4" step="1" value="1" aria-label="عدد الأكواب">
+        <div class="out" style="margin-block-start:30px">
+          <div><b id="oGram">15</b><small>غرام بن</small></div>
+          <div><b id="oWater">250</b><small>مل ماء</small></div>
+          <div><b id="oTime">3:30</b><small>وقت التحضير</small></div>
+        </div>
+      </div>
+      <div>
+        <svg class="dripper" viewBox="0 0 128 176" fill="none" aria-hidden="true">
+          <path d="M14 26h100L74 104h-20z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+          <path d="M14 26h100" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+          <path d="M34 26 66 104M50 26 70 104M78 26 70 104M94 26 74 104" stroke="currentColor" stroke-width=".9" opacity=".5"/>
+          <path d="M64 104v12" stroke="currentColor" stroke-width="1.2" opacity=".6"/>
+          <circle class="drop" cx="64" cy="124" r="3.4" fill="currentColor">
+            <animate attributeName="cy" values="112;146;146" dur="2.6s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.12;.72;1" dur="2.6s" repeatCount="indefinite"/>
+          </circle>
+          <path d="M34 150h60v10a14 14 0 0 1-14 14H48a14 14 0 0 1-14-14z" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M34 150h60" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="spine" data-spine><i></i></div>
+  <div class="wrap">
+    <div class="head rv"><svg class="ripple"><use href="#ripple"/></svg>
+      <span class="kick">the menu</span>
+      <h2>القائمة</h2>
+      <p>الأسعار بالريال السعودي، شاملة الضريبة.</p>
+      <div class="hr"></div>
+    </div>
+
+    <div class="tabs rv" role="tablist" aria-label="أقسام القائمة">
+      <button class="tab" role="tab" id="tab-drinks" aria-controls="pane-drinks" aria-selected="true">المشروبات</button>
+      <button class="tab" role="tab" id="tab-sweets" aria-controls="pane-sweets" aria-selected="false">الحلويات</button>
+    </div>
+
+    <div class="pane" id="pane-drinks" role="tabpanel" aria-labelledby="tab-drinks">
+      <div class="menu">
+        <div class="item star rv" data-d="1"><div class="nm"><h4>في ٦٠<span class="badge">الأشهر</span></h4><small>تقطير يدوي، حبة مفردة، طعم صافي</small></div><span class="dots"></span><span class="pr">34</span></div>
+        <div class="item star rv" data-d="1"><div class="nm"><h4>في ٦٠ مثلج</h4><small>نفس التقطير، ينزل مباشرة على الثلج</small></div><span class="dots"></span><span class="pr">36</span></div>
+        <div class="item rv" data-d="2"><div class="nm"><h4>كولد برو</h4><small>منقوع ١٦ ساعة على البارد، خفيف الحموضة</small></div><span class="dots"></span><span class="pr">30</span></div>
+        <div class="item rv" data-d="2"><div class="nm"><h4>إسبريسو</h4><small>جرعة مركزة، خلطة المحل</small></div><span class="dots"></span><span class="pr">22</span></div>
+        <div class="item rv" data-d="3"><div class="nm"><h4>أمريكانو</h4><small>إسبريسو وماء ساخن</small></div><span class="dots"></span><span class="pr">24</span></div>
+        <div class="item rv" data-d="3"><div class="nm"><h4>فلات وايت</h4><small>حليب مخملي، طبقة رغوة رفيعة</small></div><span class="dots"></span><span class="pr">28</span></div>
+        <div class="item rv" data-d="4"><div class="nm"><h4>لاتيه</h4><small>حليب أكثر، طعم ألطف</small></div><span class="dots"></span><span class="pr">30</span></div>
+        <div class="item rv" data-d="4"><div class="nm"><h4>كابتشينو</h4><small>ثلث إسبريسو، ثلث حليب، ثلث رغوة</small></div><span class="dots"></span><span class="pr">28</span></div>
+        <div class="item rv" data-d="5"><div class="nm"><h4>سبانش لاتيه</h4><small>حليب مكثف محلى</small></div><span class="dots"></span><span class="pr">34</span></div>
+        <div class="item rv" data-d="5"><div class="nm"><h4>ماتشا لاتيه</h4><small>ماتشا يابانية درجة احتفالية</small></div><span class="dots"></span><span class="pr">36</span></div>
+      </div>
+    </div>
+
+    <div class="pane" id="pane-sweets" role="tabpanel" aria-labelledby="tab-sweets" hidden>
+      <div class="menu">
+        <div class="item rv" data-d="1"><div class="nm"><h4>تشيز كيك باسك</h4><small>محروق من فوق، طري من جوه</small></div><span class="dots"></span><span class="pr">34</span></div>
+        <div class="item rv" data-d="1"><div class="nm"><h4>كوكيز شوكولاتة</h4><small>يخرج من الفرن مرتين في اليوم</small></div><span class="dots"></span><span class="pr">22</span></div>
+        <div class="item rv" data-d="2"><div class="nm"><h4>كرواسون زبدة</h4><small>زبدة فرنسية، ٧٢ ساعة تخمير</small></div><span class="dots"></span><span class="pr">24</span></div>
+        <div class="item rv" data-d="2"><div class="nm"><h4>كرواسون لوز</h4><small>محشي كريمة لوز، ولوز محمص فوق</small></div><span class="dots"></span><span class="pr">28</span></div>
+        <div class="item rv" data-d="3"><div class="nm"><h4>تشيز كيك التوت</h4><small>توت طازج وصلصة توت</small></div><span class="dots"></span><span class="pr">34</span></div>
+        <div class="item rv" data-d="3"><div class="nm"><h4>كيك التمر والقهوة</h4><small>تمر سكري وإسبريسو</small></div><span class="dots"></span><span class="pr">30</span></div>
+        <div class="item rv" data-d="4"><div class="nm"><h4>براوني</h4><small>شوكولاتة ٧٠٪، وسط طري</small></div><span class="dots"></span><span class="pr">28</span></div>
+        <div class="item rv" data-d="4"><div class="nm"><h4>سينامون رول</h4><small>قرفة وجبنة كريمية</small></div><span class="dots"></span><span class="pr">30</span></div>
+        <div class="item rv" data-d="5"><div class="nm"><h4>تارت الفستق</h4><small>فستق حلبي وقشرة زبدة</small></div><span class="dots"></span><span class="pr">38</span></div>
+        <div class="item rv" data-d="5"><div class="nm"><h4>مافن الموز والجوز</h4><small>موز ناضج وجوز محمص</small></div><span class="dots"></span><span class="pr">26</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="learn">
+  <div class="wrap">
+    <div class="head rv"><svg class="ripple"><use href="#ripple"/></svg>
+      <span class="kick">know your coffee</span>
+      <h2>اعرف قهوتك</h2>
+      <p>كل شيء تحت يغيّر طعم كوبك. تعرف عليها، وبتعرف تطلب اللي يعجبك بالضبط.</p>
+      <div class="hr"></div>
+    </div>
+    <div class="cards">
+      <div class="card rv" data-d="1">
+        <svg class="ic"><use href="#flame"/></svg>
+        <h3>درجة التحميص</h3>
+        <p>كل ما زاد التحميص، قل طعم الحبة وزاد طعم النار.</p>
+        <ul>
+          <li><b>فاتح</b><span>حامض خفيف، فواكه وزهور</span></li>
+          <li><b>متوسط</b><span>متوازن، كراميل ومكسرات</span></li>
+          <li><b>غامق</b><span>ثقيل، شوكولاتة داكنة ودخان</span></li>
+        </ul>
+      </div>
+      <div class="card rv" data-d="2">
+        <svg class="ic"><use href="#bean"/></svg>
+        <h3>من وين البن</h3>
+        <p>الأرض والارتفاع يعطون كل بلد طعمها الخاص.</p>
+        <ul>
+          <li><b>إثيوبيا</b><span>ياسمين وتوت وليمون</span></li>
+          <li><b>كولومبيا</b><span>كراميل وتفاح أحمر</span></li>
+          <li><b>البرازيل</b><span>مكسرات وشوكولاتة حليب</span></li>
+        </ul>
+      </div>
+      <div class="card rv" data-d="3">
+        <svg class="ic"><use href="#grind"/></svg>
+        <h3>حجم الطحن</h3>
+        <p>الطحن يقرر كم يجلس الماء مع البن.</p>
+        <ul>
+          <li><b>خشن</b><span>فرنش برس وكولد برو</span></li>
+          <li><b>متوسط</b><span>في ٦٠ والتقطير</span></li>
+          <li><b>ناعم</b><span>إسبريسو</span></li>
+        </ul>
+      </div>
+      <div class="card rv" data-d="4">
+        <svg class="ic"><use href="#cup"/></svg>
+        <h3>في ٦٠ ولا إسبريسو</h3>
+        <p>الفرق في الضغط والوقت، والنتيجة كوبين مختلفين تماماً.</p>
+        <ul>
+          <li><b>في ٦٠</b><span>خفيف وصافي، تحس بكل نكهة لحالها</span></li>
+          <li><b>إسبريسو</b><span>مركز وثقيل، وأساس كل مشروب حليب</span></li>
+        </ul>
+      </div>
+      <div class="card rv" data-d="5">
+        <svg class="ic"><use href="#clock"/></svg>
+        <h3>الكافيين</h3>
+        <p>الكوب الكبير مو دائماً هو الأقوى.</p>
+        <ul>
+          <li><b>إسبريسو</b><span>حوالي 65 ملغم للجرعة</span></li>
+          <li><b>في ٦٠</b><span>حوالي 140 ملغم للكوب</span></li>
+          <li><b>كولد برو</b><span>حوالي 180 ملغم للكوب</span></li>
+        </ul>
+      </div>
+      <div class="card rv" data-d="6">
+        <svg class="ic"><use href="#bean"/></svg>
+        <h3>خزّن البن صح</h3>
+        <p>البن يموت من الهواء والحرارة والضوء.</p>
+        <ul>
+          <li><b>لا تطحن</b><span>إلا وقت التحضير</span></li>
+          <li><b>علبة مقفلة</b><span>بعيد عن الفرن والشمس</span></li>
+          <li><b>لا تجمّده</b><span>الرطوبة تفسد الطعم</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="spine" data-spine><i></i></div>
+  <div class="wrap" style="max-width:1000px">
+    <div class="head rv">
+      <span class="kick">questions</span>
+      <h2>أسئلة تجينا كثير</h2>
+      <div class="hr"></div>
+    </div>
+    <div class="faq rv" data-d="1">
+      <button class="q" aria-expanded="false"><span>في ٦٠ حامضة؟</span><i></i></button>
+      <div class="a"><div>فيها حموضة خفيفة، مثل حموضة التفاح أو الليمون، مو حموضة لاذعة. إذا ما تحبها أبد، قل لنا وبنحضّر لك حبة محمصة أكثر، طعمها أقرب للشوكولاتة.</div></div>
+
+      <button class="q" aria-expanded="false"><span>كم تاخذ وقت؟</span><i></i></button>
+      <div class="a"><div>حوالي خمس دقائق من لحظة الطلب. نطحن ونوزن ونسكب قدامك. إذا مستعجل، الإسبريسو أو الكولد برو جاهزين على طول.</div></div>
+
+      <button class="q" aria-expanded="false"><span>عندكم حليب نباتي؟</span><i></i></button>
+      <div class="a"><div>إيه. شوفان ولوز وصويا، بدون فرق في السعر. الشوفان هو الأقرب لطعم الحليب العادي مع القهوة.</div></div>
+
+      <button class="q" aria-expanded="false"><span>أقدر أشتري البن وأحضّره في البيت؟</span><i></i></button>
+      <div class="a"><div>إيه، نبيع نفس الحبة اللي نستخدمها، محمصة عندنا. اطلبها كاملة ولا مطحونة، ونكتب لك تاريخ التحميص على الكيس.</div></div>
+
+      <button class="q" aria-expanded="false"><span>المكان يصلح للشغل والدراسة؟</span><i></i></button>
+      <div class="a"><div>إيه. واي فاي مجاني، وأباريز عند أغلب الطاولات. وقت الذروة بين ٥ و٨ المساء، فإذا تبي هدوء تعال قبل.</div></div>
+
+      <button class="q" aria-expanded="false"><span>تستقبلون طلبات كبيرة للمكاتب؟</span><i></i></button>
+      <div class="a"><div>إيه، نجهز طلبات جماعية بترمس أو أكواب مفردة. كلمنا قبلها بيوم عشان نجهز لك كل شيء على الوقت.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="visit" id="visit">
+  <div class="wrap">
+    <div class="head rv"><svg class="ripple"><use href="#ripple"/></svg>
+      <span class="kick">come in</span>
+      <h2>زورنا واطلبها عند الكاونتر</h2>
+      <p>ما عندنا طلب أونلاين، وهذا مقصود. نبي نحضّرها قدامك ونعطيك إياها وهي على حرارتها.</p>
+      <div class="hr"></div>
+    </div>
+    <div class="visitgrid">
+      <div class="rv" data-d="1">
+        <div class="info">
+          <div><svg><use href="#pin"/></svg><div><b>العنوان</b><p id="addr">حي الياسمين، الرياض</p></div></div>
+          <div><svg><use href="#clock"/></svg><div><b>أوقات العمل</b>
+            <p class="hrs">السبت إلى الخميس · 7:00 حتى 24:00</p>
+            <p class="hrs">الجمعة · 14:00 حتى 24:00</p></div></div>
+          <div><svg><use href="#cup"/></svg><div><b>اطلب في ٦٠</b><p>قل للباريستا «في ٦٠» وهو بيسألك تحب الحبة فاتحة ولا متوسطة.</p></div></div>
+        </div>
+      </div>
+      <div class="rv" data-d="2">
+        <div class="visitart">
+          <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3I416X9ACsmsKVtSV9xVNXT6mWn/89df6dfc-17ef-4132-9c90-2cf38cd45b70.jpg" alt="كوب قهوة أسود بضوء دافئ" width="1600" height="892" loading="lazy" decoding="async">
+          <div class="mk">
+            <div class="price"><b>34</b><span>ر.س</span></div>
+            <div style="font-family:var(--f-disp);font-size:clamp(20px,2.2vw,28px)">في ٦٠ · بطلة القائمة</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <a class="brand" href="#top"><svg><use href="#logo"/></svg><b>menup</b></a>
+      <div class="fnav">
+        <a href="#v60">في ٦٠</a><a href="#brew">كيف نحضّرها</a><a href="#menu">القائمة</a>
+        <a href="#learn">اعرف قهوتك</a><a href="#visit">زورنا</a>
+      </div>
+    </div>
+    <div class="fine">
+      <p>الصور في هذا الموقع مولّدة بالذكاء الاصطناعي.</p>
+      <span>© <span id="yr">2026</span> menup</span>
+    </div>
+  </div>
+</footer>
+</div>
+</main>
+<script>
+(function(){
+"use strict";
+var $=function(s,r){return (r||document).querySelector(s)};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var clamp=function(v,a,b){return v<a?a:v>b?b:v};
+
+var POSTER="https://d2ol7oe51mr4n9.cloudfront.net/user_3I416X9ACsmsKVtSV9xVNXT6mWn/89df6dfc-17ef-4132-9c90-2cf38cd45b70.jpg";
+var SETTLE="https://d2ol7oe51mr4n9.cloudfront.net/user_3I416X9ACsmsKVtSV9xVNXT6mWn/223ef4bb-7cf1-4a66-8c83-fa46f9a7a114.jpg";
+var VIDEO ="https://d2ol7oe51mr4n9.cloudfront.net/user_3I416X9ACsmsKVtSV9xVNXT6mWn/b72919a6-b1b5-4345-a712-e73297e35329.mp4";
+
+var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+$("#yr").textContent=new Date().getFullYear();
+
+/* ---------------- nav ---------------- */
+var nav=$("#nav");
+function navState(){ nav.classList.toggle("solid", window.scrollY>40); }
+navState();
+
+/* ---------------- reveal ---------------- */
+var io=null;
+if("IntersectionObserver" in window && !reduce){
+  io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  },{rootMargin:"0px 0px -12% 0px",threshold:.12});
+  $$(".rv").forEach(function(n){io.observe(n)});
+} else {
+  $$(".rv").forEach(function(n){n.classList.add("in")});
+}
+function observeNew(root){
+  if(!io){ $$(".rv",root).forEach(function(n){n.classList.add("in")}); return; }
+  $$(".rv",root).forEach(function(n){ if(!n.classList.contains("in")) io.observe(n); });
+}
+
+/* ---------------- spine drip ---------------- */
+var spineEls=$$("[data-spine]");
+function spines(){
+  if(reduce||!spineEls.length) return;
+  var vh=window.innerHeight;
+  for(var i=0;i<spineEls.length;i++){
+    var el=spineEls[i], r=el.getBoundingClientRect();
+    if(r.bottom<-200||r.top>vh+200) continue;
+    var p=clamp((vh*0.8-r.top)/(r.height||1),0,1);
+    var dot=el.firstElementChild;
+    if(dot) dot.style.top=(p*100).toFixed(2)+"%";
+  }
+}
+
+/* ---------------- hero scrub ---------------- */
+var hero=$("#hero"), stage=$("#stage"), vid=$("#vid"), plate=$("#plate");
+var bands=$$(".band"), settle=$("#settle"), hint=$("#hint");
+var ringwrap=$("#ringwrap"), ringfg=$("#ringfg"), ringtxt=$("#ringtxt");
+var SETTLE_FROM=0.88;
+
+function goStatic(msg){
+  hero.classList.add("static-hero");
+  plate.style.backgroundImage="url('"+SETTLE+"')";
+  bands.forEach(function(b){ b.style.display="none"; });
+  settle.classList.add("on");
+  if(hint) hint.classList.add("hidden");
+  if(ringwrap) ringwrap.classList.add("hidden");
+  if(vid && vid.parentNode) vid.parentNode.removeChild(vid);
+}
+
+var wantsScrub = !reduce && window.innerWidth>=900 && typeof fetch==="function" &&
+                 !(window.matchMedia && window.matchMedia("(pointer: coarse)").matches);
+
+if(!wantsScrub){
+  goStatic();
+} else {
+  startScrub();
+}
+if(!wantsScrub){
+  window.addEventListener("scroll",function(){ navState(); spines(); },{passive:true});
+}
+spines();
+
+function startScrub(){
+  var target=0, cur=0, dur=0, ready=false, raf=0, lastBand=-2, lastSettle=null, lastP=-1;
+
+  function progress(){
+    var span=hero.offsetHeight-window.innerHeight;
+    if(span<=0) return 0;
+    return clamp((window.scrollY-hero.offsetTop)/span,0,1);
+  }
+
+  function paintText(p){
+    if(Math.abs(p-lastP)<0.0008) return;
+    lastP=p;
+    var idx=-1;
+    for(var i=0;i<bands.length;i++){
+      var f=parseFloat(bands[i].dataset.from), t=parseFloat(bands[i].dataset.to);
+      if(p>=f&&p<=t){ idx=i; break; }
+    }
+    if(idx!==lastBand){
+      if(lastBand>=0&&bands[lastBand]) bands[lastBand].classList.remove("on");
+      if(idx>=0) bands[idx].classList.add("on");
+      lastBand=idx;
+    }
+    var s=p>=SETTLE_FROM;
+    if(s!==lastSettle){ settle.classList.toggle("on",s); lastSettle=s; }
+    if(hint) hint.classList.toggle("hidden", p>0.025);
+  }
+
+  function tick(){
+    raf=0;
+    if(ready&&dur>0){
+      var d=target-cur;
+      if(Math.abs(d)>0.004){
+        cur+=d*0.14;
+        if(!vid.seeking){
+          try{ vid.currentTime=cur; }catch(e){}
+        }
+        raf=requestAnimationFrame(tick);
+      } else {
+        cur=target;
+        if(!vid.seeking){ try{ vid.currentTime=cur; }catch(e){} }
+      }
+    }
+  }
+  function kick(){ if(!raf) raf=requestAnimationFrame(tick); }
+
+  function onScroll(){
+    navState();
+    var p=progress();
+    paintText(p);
+    if(ready&&dur>0){ target=p*dur; kick(); }
+    spines();
+  }
+
+  /* stream the video behind an honest ring */
+  ringwrap.classList.remove("hidden");
+  function setRing(f){
+    var c=2*Math.PI*10;
+    ringfg.setAttribute("stroke-dashoffset", String(c-c*f));
+    ringtxt.textContent=Math.round(f*100)+"%";
+  }
+  setRing(0);
+
+  fetch(VIDEO,{mode:"cors",credentials:"omit"}).then(function(res){
+    if(!res.ok) throw new Error("http "+res.status);
+    var total=parseInt(res.headers.get("content-length")||"0",10);
+    if(!res.body||!total) return res.blob();
+    var reader=res.body.getReader(), chunks=[], got=0;
+    return (function pump(){
+      return reader.read().then(function(r){
+        if(r.done) return new Blob(chunks,{type:"video/mp4"});
+        chunks.push(r.value); got+=r.value.length; setRing(clamp(got/total,0,1));
+        return pump();
+      });
+    })();
+  }).then(function(blob){
+    var url=URL.createObjectURL(blob);
+    vid.addEventListener("loadeddata",function(){
+      dur=vid.duration||5;
+      ready=true;
+      try{ vid.pause(); }catch(e){}
+      stage.classList.add("playing");
+      ringwrap.classList.add("hidden");
+      onScroll();
+    },{once:true});
+    vid.addEventListener("error",function(){ goStatic(); },{once:true});
+    vid.src=url; vid.load();
+  }).catch(function(){ goStatic(); });
+
+  window.addEventListener("scroll",onScroll,{passive:true});
+  window.addEventListener("resize",function(){ lastP=-1; onScroll(); },{passive:true});
+  onScroll();
+}
+
+/* ---------------- tabs ---------------- */
+var tabs=$$(".tab");
+tabs.forEach(function(t){
+  t.addEventListener("click",function(){
+    tabs.forEach(function(o){
+      var sel=o===t;
+      o.setAttribute("aria-selected",sel?"true":"false");
+      var pane=document.getElementById(o.getAttribute("aria-controls"));
+      if(pane){ pane.hidden=!sel; if(sel) observeNew(pane); }
+    });
+  });
+});
+
+/* ---------------- faq ---------------- */
+$$(".q").forEach(function(q){
+  var panel=q.nextElementSibling;
+  q.addEventListener("click",function(){
+    var open=q.getAttribute("aria-expanded")==="true";
+    q.setAttribute("aria-expanded",open?"false":"true");
+    panel.style.height=open?"0px":panel.firstElementChild.offsetHeight+"px";
+  });
+});
+
+/* ---------------- v60 calculator ---------------- */
+var range=$("#cupRange"), oG=$("#oGram"), oW=$("#oWater"), oT=$("#oTime"), cups=$("#cups");
+function calc(){
+  var n=parseInt(range.value,10);
+  cups.textContent=n;
+  oG.textContent=n*15;
+  oW.textContent=n*250;
+  var secs=210+(n-1)*40;
+  oT.textContent=Math.floor(secs/60)+":"+String(secs%60).padStart(2,"0");
+}
+range.addEventListener("input",calc); calc();
+
+/* ---------------- motes ---------------- */
+(function(){
+  if(reduce) return;
+  var c=$("#motes"), ctx=c.getContext("2d"), ps=[], w=0,h=0,dpr=Math.min(window.devicePixelRatio||1,2);
+  function size(){
+    w=c.clientWidth; h=c.clientHeight;
+    c.width=w*dpr; c.height=h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    var n=Math.round(Math.min(w*h/26000,58));
+    ps=[]; for(var i=0;i<n;i++) ps.push({x:Math.random()*w,y:Math.random()*h,
+      r:Math.random()*1.3+.35,s:Math.random()*.16+.04,a:Math.random()*.32+.06,d:Math.random()*6.28});
+  }
+  function frame(){
+    ctx.clearRect(0,0,w,h);
+    for(var i=0;i<ps.length;i++){
+      var p=ps[i];
+      p.y-=p.s; p.d+=0.006; p.x+=Math.sin(p.d)*0.16;
+      if(p.y<-6){ p.y=h+6; p.x=Math.random()*w; }
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,6.283);
+      ctx.fillStyle="rgba(224,206,178,"+p.a+")"; ctx.fill();
+    }
+    requestAnimationFrame(frame);
+  }
+  size(); window.addEventListener("resize",size,{passive:true}); frame();
+})();
+})();
+</script>
+<noscript><style>.hero{height:100svh!important}.stage .plate{opacity:1}.settle{opacity:1!important;visibility:visible!important}.settle .mark,.settle h1,.settle .row{opacity:1!important;transform:none!important}.band{display:none}.rv{opacity:1!important;transform:none!important}.hint{display:none}</style></noscript>
+</body>
+</html>
